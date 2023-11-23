@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int getPCmove() {//kanw dhlwsh ena name pou dinw gia thn kinhsh to pc kai tou dinw apo katw na epistrefei random  ews to 3
+    return rand() % 3;
+}
+
+void Menu() {//ftiaaxnw thn fuction gia to menu kai thn anoigw ti na m leei
+    printf("1. Rock\n");
+    printf("2. Paper\n");
+    printf("3. Scissors\n");
+    printf("0. Quit\n");
+    printf("Enter your choice (0-3): ");
+}
+
+int main() {// anoigw thn main vazw srand gia to seed
+    srand(time(NULL));
+    int UserMove, PCmove, userScore, round, PCScore;//kai edw dhlwnoume ths kinhshs pou dhmiourgw kai ta score 
+    char playAgain;//char playagain gia na tou dwsoume entoles sto ti na kanei parakatw dhlaadh y na sunexisoume n giaa na kleisei
+
+    do {//anoigoume thn loopa mas 
+        userScore = 0;
+        PCScore = 0;
+
+        printf("Welcome to Rock, Paper, Scissors Game. You have 3 Rounds To Win\n");
+
+        for (int round = 1; round <= 3; ++round) {//edw tou dinw me to for na trexei kai na metraei tous round mexri ton 3 p leigei to game kai vgenei kapoios nikhtis analogos me to score
+            printf("\nRound %d\n", round);
+            Menu();
+            scanf_s("%d", &UserMove);
+
+            if (UserMove == 0) {
+                printf("Chicken, You Leave\n");
+                return 0; // ftiaxnoume thn prwth epilogh an thelei o user na kanei exit sto round
+            }
+
+            if (UserMove < 1 || UserMove > 3) {
+                printf("Invalid Move. Choose 1-3 numbers\n");
+                --round;
+                continue;
+            }
+
+            PCmove = getPCmove();// tou metaferoume thn timh apo thn metavlith panw pou exw dwsei gia na einai random
+
+            printf("Your Turn\n");
+
+            switch (UserMove) {//anoigoume diakopth gia ton user
+            case 1:
+                printf("Rock\n");
+                break;
+            case 2:
+                printf("Paper\n");
+                break;
+            case 3:
+                printf("Scissors\n");
+                break;
+            }
+
+            printf("PC Move\n");
+
+            switch (PCmove) {// kai edfw gia to pc
+            case 0:
+                printf("Rock\n");
+                break;
+            case 1:
+                printf("Paper\n");
+                break;
+            case 2:
+                printf("Scissors\n");
+                break;
+            }
+
+            printf("\n");
+
+            if (UserMove == PCmove) {
+                printf("It's a Tie\n");
+            }
+            else if ((UserMove == 1 && PCmove == 2) ||// edw vazoume ta apotelesmata prosthetontas mesa isothta logikh kaai or
+                (UserMove == 2 && PCmove == 3) ||
+                (UserMove == 3 && PCmove == 1)) {
+                printf("PC Wins! You lose.\n");
+                ++PCScore;//edw prosthetoume to score me ton eauto tou
+            }
+            else {
+                printf("You Win! Chicken Dinner!\n");
+                ++userScore;//to score me ton eauto tou user
+            }
+        }
+
+        // Dixnei Ta Final scores
+        printf("\nFinal Score\n");
+        printf("PC Score: %d\n", PCScore);
+        printf("Your Score: %d\n", userScore);
+
+        if (userScore > PCScore) {
+            printf("GG QQ EZ :D\n");
+        }
+        else if (userScore < PCScore) {
+            printf("NOOB!\n");
+        }
+        else {
+            printf("It's a tie!\n");
+        }
+
+        printf("\nDo you want to play again? (y/n): ");
+        scanf_s(" %c", &playAgain);
+
+        // edw bzoume na diavazei tous xaraktires apo to plhktrologio + apo katw to allo while opws exoume dhmhourghsei to playaagain kai exw valei na dexete mikra kefalaia
+        while ((getchar()) != '\n');
+
+    } while (playAgain == 'y' || playAgain == 'Y');
+
+    return 0;
+}
