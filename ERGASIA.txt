@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>// apoti m eipan ta paidia thelame rand kai library epsaksa kai
+                      vrhka to stdlib einai oti xrhsimopoihte gia general fuctions
+#include <time.h>
+
+int rollDice() {
+return rand() % 10 + 1;// loipon vazoume thn rolldice gia ta zaria mas me to rand
+                        	kai to %10+1 tou dinw thn epilogh gia random arithmous apo to 1-10
+}
+
+int main() {
+int P1Score = 0;
+int P2Score = 0;
+
+srand(time(NULL));//srand thn vaazoume gia thn vash tou rand periexei ta seed
+ kai tou prostetoume time null wste na xrhshmopoih torolo tou upologisth kai kathe
+ fora na seedarei diaforetikous arithmmous na mhn epanalamvanei tous idious san static
+
+int choice;//edw enswmatonoume thn choice kai tou dinoume me thn do ths parakatw
+ epiloges opws exoume to 1 h to 0 gia epiloges giauto valame kai to %d an ithela
+ na paiksei me gramata tha evaza %c gia ths edoles
+ do {
+  printf("Press 1 to play or 0 to quit: ");
+  scanf("%d", &choice);
+
+   if (choice == 1) {
+   for (int round = 1; round <= 5; round++) {
+   printf("Round %d:\n", round);
+
+   printf("Press Enter to roll the dice for both players...");
+   getchar(); //edw perimenei na dextei to enter
+   getchar(); //to opoio  to diavazei giati to periexei mesa sthn stdio
+
+    int P1Dice1 = rollDice();
+    int P1Dice2 = rollDice();
+    int P2Dice1 = rollDice();
+    int P2Dice2 = rollDice();
+
+    printf("P1 rolled a %d and %d\n", P1Dice1, P1Dice2);
+    printf("P2 rolled a %d and %d\n", P2Dice1, P2Dice2);
+
+    int P1RoundSum = P1Dice1 + P1Dice2;
+    int P2RoundSum = P2Dice1 + P2Dice2;
+
+    printf("P1 round sum: %d\n", P1RoundSum);
+    printf("P2 round sum: %d\n", P2RoundSum);
+
+     if (P1RoundSum > P2RoundSum) {
+      P1Score++;
+      printf("P1 wins this round!\n");
+      } else if (P2RoundSum > P1RoundSum) {
+      P2Score++;
+      printf("P2 wins this round!\n");
+      } else {
+      printf("It's a tie for this round!\n");
+      }
+
+      printf("P1 Score: %d\n", P1Score);
+      printf("P2 Score: %d\n\n", P2Score);
+      }
+
+      if (P1Score > P2Score) {
+      printf("P1 is the winner!\n");
+      } else if (P2Score > P1Score) {
+        printf("P2 is the winner!\n");
+        } else {
+        printf("It's a tie game!\n");
+        }
+        } else if (choice != 0) {
+            printf("Invalid choice. Please enter 1 to play or 0 to quit.\n");
+        }
+
+    } while (choice != 0);//edw vazoume thn loopa while wste tou dinoume
+	to 0 kai teleiwnei to programma gt to choice ! = 0 einai false kai teleiwnei h loopa
+
+    printf("Thanks for playing. Goodbye!\n");
+
+    return 0;
+}
