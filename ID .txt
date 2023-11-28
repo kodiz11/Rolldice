@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()  
+{
+    
+    printf("Name   : Steve Kodi\n"); 
+    
+    
+    printf("Birth    : February, 20 1995\n"); 
+    
+    
+    printf("NumPhone : 69xxxxxxxx\n"); 
+    
+    
+    return(0); 
+}

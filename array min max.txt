@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int array[] = {5, 12, 8, 3, 9, 4, 7};
+
+    int n = sizeof(array) / sizeof(array[0]);
+    int min = array[0];
+    int max = array[0];
+
+    for (int i = 1; i < n; i++) {
+        if (array[i] < min) {
+            min = array[i];
+        }
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+
+    printf("Ο μικρότερος αριθμός είναι: %d\n", min);
+    printf("Ο μεγαλύτερος αριθμός είναι: %d\n", max);
+
+    return 0;
+}
