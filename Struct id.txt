@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+struct Person {
+char name[30];
+int age;
+float height;
+};
+int main() {
+struct Person me = {"Stauros Kontizas", 28, 1.78};
+printf("About Me:\n");
+printf("Name: %s\n", me.name);
+printf("Age: %d\n", me.age);
+printf("Height: %.2f meters\n", me.height);
+return 0;
+}

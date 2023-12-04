@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <time.h>
+#include <locale.h>
+
+int main() {
+    
+    setlocale(LC_TIME, "el_GR.UTF-8");
+
+   
+    time_t currentTime;
+    struct tm *localTime;
+
+    time(&currentTime);
+    localTime = localtime(&currentTime);
+
+    
+    char formattedDateTime[50];
+    strftime(formattedDateTime, sizeof(formattedDateTime), "%A, %e %B %Y %H:%M:%S", localTime);
+
+    
+    printf("The Current Date Time in Greece: %s\n", formattedDateTime);
+
+    return 0;
+}
